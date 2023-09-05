@@ -80,24 +80,23 @@ class StoryList {
       method: "POST",
       url: `${BASE_URL}/stories`,
       data: {token, newStory: {title, author, url}},
-      method: "GET",
     });
 
-    const story = newStory (response.data.story);
+    const story = new Story (response.data.story);
     this.stories.unshift(story);
     user.ownStories.unshift(story);
 
     return Story;
   }
-}
 
   async removeStory (username,storyId) {
-  const token = user.loginToken;
-  await axios ({
-    url: `$(BASE_URL)/stories`,
-    method: "DELETE",
-    data: {token: user.loginToken},
-  });
+    const token = user.loginToken;
+    await axios ({
+      url: `$(BASE_URL)/stories`,
+      method: "DELETE",
+      data: {token: user.loginToken},
+    })
+
 
     // filter out the story whose ID we are removing
     this.stories = this.stories.filter(story => story.storyId !== storyId);
@@ -105,6 +104,8 @@ class StoryList {
     // do the same thing for the user's list of stories & their favorites
     user.ownStories = user.ownStories.filter(s => s.storyId !== storyId);
     user.favorites = user.favorites.filter(s => s.storyId !== storyId);
+
+  }
 }
 
 /******************************************************************************

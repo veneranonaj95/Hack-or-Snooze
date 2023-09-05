@@ -24,6 +24,8 @@ function generateStoryMarkup(story, showDeleteBtn = false) {
 
   const hostName = story.getHostName();
 
+  const showStar = Boolean(currentUser);
+
   return $(`
       <li id="${story.storyId}">
         <a href="${story.url}" target="a_blank" class="story-link">
@@ -57,7 +59,7 @@ function putStoriesOnPage() {
 function getDeleteBtnHTML () {
   return
     <span class = "trash-can">
-      <i class = "trash"></i>
+      <i class = "fas fa-trash-alt"></i>
     </span>
 }
 
@@ -72,18 +74,49 @@ function getThumbHTML (story, user) {
 
 async function deleteStory(evt) {
   console.debug("deleteStory");
+
   await storyList.removeStory (currentUser, storyId);
-  await putUserStories();
+ 
+  await putUserStoriesOnPage();
 }
 
+$ownStories.on("click", ".trash-can", deleteStory);
+
 async function submitNewStory(evt) {
-  const storyData = (storyData: title, author, url, username);
+  console.debug("submitNewStory");
+
+  const title = $("#create-title").val();
+  const url = $("#create-url").val();
+  const author = $("#create-author").val();
+  const username = currentUser.username
+  const storyData = {title, author, url, username};
   
   const story = await storyList.addStory(currentUser, storyData);
 
   const story = generateStoryMarkup(story);
   $allStoriesList.prepend($story);
+
 }
+
+$submitForm.on("submit", submitNewStory);
+
+function putUserStoriesOnPage(){
+  console.debug ("putUserStoriesOnPage");
+
+  $ownStories.empty();
+
+  if (currentUser.ownStories.length === 0) {
+    $ownStories.append(<h5>No Stories Available!</h5>);
+  } else {
+    for (let story of currentUser.ownStories) {
+      let $story = generateStoryMarkup (story, true);
+      $ownStories.append($story);
+    }
+  }
+
+  $ownStories.show();
+}
+
 
 function showFavoritesListOnPage() {
   $favoritedStories.empty();
