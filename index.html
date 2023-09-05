@@ -11,7 +11,7 @@
      - Joel Burton: refactored and componentized, 2020
      - You!
   -->
-
++
 <html lang="en">
 
 <head>
@@ -124,19 +124,25 @@
 </section>
 
 <!-- User profile -->
-<section id="user-profile" >
-
+<section id="user-profile" class="hidden" >
+  <div class="user-profile-box container">
+    <h4>User Profile</h4>
+    <section>
+      <div>Name: <span id="profile-name"></span></div>
+      <div>Username: <spann id="profile-username"></span></div>
+    </section>
+  </div>
 </section>
 
 <!-- Library JS & our JS -->
 <script src="https://unpkg.com/jquery"></script>
 <script src="https://unpkg.com/axios/dist/axios.js"></script>
 
-<script src="js/models.js"></script>
-<script src="js/main.js"></script>
-<script src="js/nav.js"></script>
-<script src="js/user.js"></script>
-<script src="js/stories.js"></script>
+<script src="models.js"></script>
+<script src="main.js"></script>
+<script src="nav.js"></script>
+<script src="user.js"></script>
+<script src="stories.js"></script>
 
 </body>
 </html>
