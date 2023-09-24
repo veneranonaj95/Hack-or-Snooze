@@ -1,4 +1,4 @@
-"use strict";
+
 
 // So we don't have to keep re-finding things on page, find DOM elements once:
 
@@ -26,10 +26,12 @@ const $navLogOut = $("#nav-logout");
  * is a useful function that hides pretty much everything on the page. After
  * calling this, individual components can re-show just what they want.
  */
+console.log("navSubmitStory clicked");
+
 
 function hidePageComponents() {
   const components = [
-    $SsoriesList,
+    $storiesList,
     $loginForm,
     $signupForm,
     $submitForm,

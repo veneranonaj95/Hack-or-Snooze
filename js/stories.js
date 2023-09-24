@@ -56,21 +56,7 @@ function putStoriesOnPage() {
   $allStoriesList.show();
 }
 
-function getDeleteBtnHTML () {
-  return
-    <span class = "trash-can">
-      <i class = "fas fa-trash-alt"></i>
-    </span>
-}
 
-function getThumbHTML (story, user) {
-  const isFavorite = user.isFavorite(story) ;
-  const thumbType = isFavorite
-  return
-    <span class = "thumb">
-      <i class = "${thumbType} "fas fa-thumbs-up></i>
-    </span>
-}
 
 async function deleteStory(evt) {
   console.debug("deleteStory");
@@ -91,9 +77,9 @@ async function submitNewStory(evt) {
   const username = currentUser.username
   const storyData = {title, author, url, username};
   
-  const story = await storyList.addStory(currentUser, storyData);
+  let story = await storyList.addStory(currentUser, storyData);
 
-  const story = generateStoryMarkup(story);
+   story = generateStoryMarkup(story);
   $allStoriesList.prepend($story);
 
 }
@@ -106,7 +92,7 @@ function putUserStoriesOnPage(){
   $ownStories.empty();
 
   if (currentUser.ownStories.length === 0) {
-    $ownStories.append(<h5>No Stories Available!</h5>);
+    $ownStories.append($('<h5>No Stories Available!</h5>'));
   } else {
     for (let story of currentUser.ownStories) {
       let $story = generateStoryMarkup (story, true);

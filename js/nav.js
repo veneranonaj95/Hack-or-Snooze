@@ -21,7 +21,7 @@ function $navSubmitStoryClick(evt) {
   $submitForm.show();
 }
 
-$body.on("click","#nav-favorites", navFavoritesClick);
+//$body.on("click","#nav-favorites", $navFavoritesClick);
 
 function navMyStories(evt) {
   console.debug("navMyStories", evt);
@@ -45,7 +45,7 @@ $navLogin.on("click", navLoginClick);
 
 /** When a user first logins in, update the navbar to reflect that. */
 
-function navProfileClick(evt); {
+function navProfileClick(evt) {
   console.debug("navProfileClick", evt);
   hidePageComponents();
   $userProfile.show();

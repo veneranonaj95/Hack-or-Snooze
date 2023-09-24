@@ -29,6 +29,11 @@ async function login(evt) {
 
 $loginForm.on("submit", login);
 
+
+$navSubmitStory.on('click', function (event) {
+  event.preventDefault();
+  $navSubmitStoryClick()
+});
 /** Handle signup form submission. */
 
 async function signup(evt) {
