@@ -24,7 +24,7 @@
       href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
       integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
       crossorigin="anonymous">
-  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/nav.css">
   <link rel="stylesheet" href="css/user.css">
   <link rel="stylesheet" href="css/stories.css">
   <link rel="stylesheet" href="css/nav.css">
@@ -45,6 +45,7 @@
     <a class="nav-link" href="#" id="nav-favorites">favorites</a>
     |
     <a class="nav-link" href="#" id="nav-submit-story">submit</a>
+    |
   </div>
   <div class="nav-right">
     <a class="nav-link" href="#" id="nav-login">login/signup</a>
@@ -59,15 +60,15 @@
   <form action="" class="form hidden" id="submit-form" method="post">
     <div>
       <label for="input-author">author</label>
-      <input id="author" placeholder="author" required>
+      <input id="author" required>
     </div>
     <div>
       <label for="input-title">title</label>
-      <input id="title" placeholder="title" required>
+      <input id="title" required>
     </div>
     <div>
       <label for="input-url">url</label>
-      <input id="url" placeholder="url" required>
+      <input id="url" required>
     </div>
     <button type="submit">submit</button>
   </form>
@@ -123,6 +124,7 @@
   </form>
 </section>
 
+
 <!-- User profile -->
 <section id="user-profile" class="hidden" >
   <div class="user-profile-box container">
@@ -138,11 +140,12 @@
 <script src="https://unpkg.com/jquery"></script>
 <script src="https://unpkg.com/axios/dist/axios.js"></script>
 
-<script src="models.js"></script>
-<script src="main.js"></script>
-<script src="nav.js"></script>
-<script src="user.js"></script>
-<script src="stories.js"></script>
+<script src="js/main.js"></script>
+<script src="js/main.js"></script>
+<script src="js/models.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/user.js"></script>
+<script src="js/stories.js"></script>
 
 </body>
 </html>
