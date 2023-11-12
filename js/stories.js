@@ -28,6 +28,9 @@ function generateStoryMarkup(story, showDeleteBtn = false) {
 
   return $(`
       <li id="${story.storyId}">
+      <span class="star">
+        <i class="bi bi-star"></i>
+      </span>
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -37,8 +40,6 @@ function generateStoryMarkup(story, showDeleteBtn = false) {
       </li>
     `);
 }
-
-
 
 /** Gets list of stories from server, generates their HTML, and puts on page. */
 
@@ -56,13 +57,11 @@ function putStoriesOnPage() {
   $allStoriesList.show();
 }
 
-
-
 async function deleteStory(evt) {
   console.debug("deleteStory");
 
-  await storyList.removeStory (currentUser, storyId);
- 
+  await storyList.removeStory(currentUser, storyId);
+
   await putUserStoriesOnPage();
 }
 
@@ -74,35 +73,33 @@ async function submitNewStory(evt) {
   const title = $("#create-title").val();
   const url = $("#create-url").val();
   const author = $("#create-author").val();
-  const username = currentUser.username
-  const storyData = {title, author, url, username};
-  
+  const username = currentUser.username;
+  const storyData = { title, author, url, username };
+
   let story = await storyList.addStory(currentUser, storyData);
 
-   story = generateStoryMarkup(story);
+  story = generateStoryMarkup(story);
   $allStoriesList.prepend($story);
-
 }
 
 $submitForm.on("submit", submitNewStory);
 
-function putUserStoriesOnPage(){
-  console.debug ("putUserStoriesOnPage");
+function putUserStoriesOnPage() {
+  console.debug("putUserStoriesOnPage");
 
   $ownStories.empty();
 
   if (currentUser.ownStories.length === 0) {
-    $ownStories.append($('<h5>No Stories Available!</h5>'));
+    $ownStories.append($("<h5>No Stories Available!</h5>"));
   } else {
     for (let story of currentUser.ownStories) {
-      let $story = generateStoryMarkup (story, true);
+      let $story = generateStoryMarkup(story, true);
       $ownStories.append($story);
     }
   }
 
   $ownStories.show();
 }
-
 
 function showFavoritesListOnPage() {
   $favoritedStories.empty();
