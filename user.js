@@ -29,6 +29,11 @@ async function login(evt) {
 
 $loginForm.on("submit", login);
 
+$navSubmitStory.on('click', function (event){
+  event.preventDefault();
+  $navSubmitStoryClick()
+});
+
 /** Handle signup form submission. */
 
 async function signup(evt) {
@@ -111,12 +116,14 @@ function updateUIOnUserLogin() {
   console.debug("updateUIOnUserLogin");
 
   hidePageComponents();
+  $loginForm.hide();
+  $allStoriesList.show();
 
   updateNavOnLogin();
   generateUserProfile();
 
   putStoriesOnPage();
-  $allstoriesList.show();
+  $allStoriesList.show();
 }
 
 function generateUserProfile() {

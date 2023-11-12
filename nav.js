@@ -21,12 +21,11 @@ function $navSubmitStoryClick(evt) {
   $submitForm.show();
 }
 
-$navSubmitStory.on("click", navSubmitStoryClick);
 
 //TODO define navFavoritesClick function
 //$body.on("click","#nav-favorites", navFavoritesClick);
 
-function navFavoritesClick(evt) {
+function $navFavoritesClick(evt) {
   console.debug("navFavoriteClick", evt);
   hidePageComponents();
   putFavoritesListOnPage();

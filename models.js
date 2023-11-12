@@ -89,12 +89,18 @@ class StoryList {
     return Story;
   }
 
+  /** Delete story from API and remove from the story lists.
+   * 
+   * -user: the current User instance
+   * -storyId: the ID of the story you want to remove
+   */
+
   async removeStory (_username,storyId) {
-    const token = User.loginToken;
+    const token = user.loginToken;
     await axios ({
-      url: `$(BASE_URL)/stories`,
+      url: `$(BASE_URL)/stories/${storyId}`,
       method: "DELETE",
-      data: {token: User.loginToken},
+      data: {token: user.loginToken},
     })
 
 
@@ -102,8 +108,8 @@ class StoryList {
     this.stories = this.stories.filter(story => story.storyId !== storyId);
 
     // do the same thing for the user's list of stories & their favorites
-    User.ownStories = User.ownStories.filter(s => s.storyId !== storyId);
-    User.favorites = User.favorites.filter(s => s.storyId !== storyId);
+    user.ownStories = user.ownStories.filter(s => s.storyId !== storyId);
+    user.favorites = user.favorites.filter(s => s.storyId !== storyId);
 
   }
 }
@@ -149,10 +155,10 @@ class User {
     const response = await axios({
       url: `${BASE_URL}/signup`,
       method: "POST",
-      data: { user: { username, password, name } },
+      data: {user: {username, password, name}},
     });
 
-    let { user } = response.data
+    let {user} = response.data;
 
     return new User(
       {
@@ -176,10 +182,10 @@ class User {
     const response = await axios({
       url: `${BASE_URL}/login`,
       method: "POST",
-      data: { user: { username, password } },
+      data: {user: {username, password}},
     });
 
-    let { user } = response.data;
+    let {user} = response.data;
 
     return new User(
       {
@@ -202,10 +208,10 @@ class User {
       const response = await axios({
         url: `${BASE_URL}/users/${username}`,
         method: "GET",
-        params: { token },
+        params: {token},
       });
 
-      let { user } = response.data;
+      let {user} = response.data;
 
       return new User(
         {
@@ -240,7 +246,7 @@ async _addOrRemoveFavorite(newState, story) {
   await axios({
     url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
     method: method,
-    data: { token },
+    data: {token},
   });
 }
 

@@ -24,7 +24,7 @@
       href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
       integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
       crossorigin="anonymous">
-  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/site.css">
   <link rel="stylesheet" href="css/user.css">
   <link rel="stylesheet" href="css/stories.css">
   <link rel="stylesheet" href="css/nav.css">
@@ -40,11 +40,11 @@
   </div>
   <div class = "nav-link hidden">
     |
-    <a class="nav-link" href="#" id="nav-my-stories">mystories</a>
+    <a class="nav-link" href="#" id="nav-submit-story">submit</a>
     |
     <a class="nav-link" href="#" id="nav-favorites">favorites</a>
     |
-    <a class="nav-link" href="#" id="nav-submit-story">submit</a>
+    <a class="nav-link" href="#" id="nav-my-stories">mystories</a>
     |
   </div>
   <div class="nav-right">
@@ -57,24 +57,36 @@
 <!-- area for stories (all stories, user stories, favorites) -->
 <section class="stories-container container">
 
-  <form action="" class="form hidden" id="submit-form" method="post">
+  <form class="hidden" id="submit-form" method="post">
     <div>
-      <label for="input-author">author</label>
-      <input id="author" required>
+      <label for="create-author">author</label>
+      <input id="create-author" required placeholder="author name">
     </div>
     <div>
-      <label for="input-title">title</label>
-      <input id="title" required>
+      <label for="create-title">title</label>
+      <input id="create-title" required placeholder="story title">
     </div>
     <div>
-      <label for="input-url">url</label>
-      <input id="url" required>
+      <label for="create-url">url</label>
+      <input id="create-url" required placeholder="story url">
     </div>
     <button type="submit">submit</button>
+    <hr>
   </form>
 
+ <h4>Delete</h4>
+ <div class = "trash">
+  <button type = "submit">delete story</button>
+  <div class = "box"></div>
+ </div>
+
+ <label class="add-fav">
+  <input type="checkbox">
+  <i class="icon-star"></i>
+ </label>
+
   <!-- loading message (removed by JS after stories loaded) -->
-  <div id="stories-loading-msg">Loading&hellip;</div>
+  <div id="stories-loading-msg">Loading</div>
 
   <!-- List of all stories -->
   <ol id="all-stories-list" class="stories-list"></ol>
@@ -117,7 +129,7 @@
       <input id="signup-username" autocomplete="new-username">
     </div>
     <div class="login-input">
-      <label for="signup-password">password</label>
+      <label for="signup">password</label>
       <input id="signup-password" autocomplete="new-password" type="password">
     </div>
     <button type="submit">create account</button>
@@ -130,8 +142,9 @@
   <div class="user-profile-box container">
     <h4>User Profile</h4>
     <section>
-      <div>Name: <span id="profile-name"></span></div>
-      <div>Username: <spann id="profile-username"></span></div>
+      <div>Name: <span id="profile-name">Name:</span></div>
+      <div>Username: <spann id="profile-username">Username:</span></div>
+        <div>Account Created: <span id="profile-account-date"></span></div>
     </section>
   </div>
 </section>

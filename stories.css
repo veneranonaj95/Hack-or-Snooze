@@ -16,10 +16,27 @@
   margin: 20px 30px;
 }
 
+#favorited-storiess,
+#my-storie{
+  list-style: none;
+  padding-left: 15px;
+}
+
 
 /* Individual stories */
+.star,
+.trash-can {
+  font-size: 1rem;
+  margin: 0 2px;
+  cursor: pointer;
+}
 
-.story-link {
+.trash-can:hover
+ {
+  color: orangered;
+ }
+ 
+ .story-link {
   color: black;
   font-size: 0.85rem;
   font-weight: normal;
