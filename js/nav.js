@@ -53,7 +53,6 @@ function navProfileClick(evt) {
 
 $navUserProfile.on("click", navProfileClick);
 
-
 function updateNavOnLogin() {
   console.debug("updateNavOnLogin");
   $(".main-nav-links").show();

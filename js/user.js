@@ -123,7 +123,7 @@ function updateUIOnUserLogin() {
   generateUserProfile();
 
   putStoriesOnPage();
-  $allstoriesList.show();
+  $allStoriesList.show();
 }
 
 function generateUserProfile() {
