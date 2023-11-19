@@ -21,7 +21,6 @@ async function getAndShowStoriesOnStart() {
 
 function generateStoryMarkup(story, showDeleteBtn = false) {
   // console.debug("generateStoryMarkup", story);
-
   const hostName = story.getHostName();
 
   const showStar = Boolean(currentUser);
@@ -59,7 +58,6 @@ function getStarHTML(story, user) {
       </span>`;
 }
 
-
 /** Gets list of stories from server, generates their HTML, and puts on page. */
 
 function putStoriesOnPage() {
@@ -76,20 +74,17 @@ function putStoriesOnPage() {
   $allStoriesList.show();
 }
 
-
 async function deleteStory(evt) {
   console.debug("deleteStory");
 
   const $closestLi = $(evt.target).closest("li");
   const storyId = $closestLi.attr("id");
 
-await storyList.removeStory(currentUser, storyId);
-await putUserStoriesOnPage();
-
+  await storyList.removeStory(currentUser, storyId);
+  await putUserStoriesOnPage();
 }
 
 $ownStories.on("click", ".trash-can", deleteStory);
-
 
 async function submitNewStory(evt) {
   console.debug("submitNewStory");
@@ -98,9 +93,9 @@ async function submitNewStory(evt) {
   const title = $("#create-title").val();
   const url = $("#create-url").val();
   const author = $("#create-author").val();
-  const username = currentUser.username
-  const storyData = {title, url, author, username};
-  
+  const username = currentUser.username;
+  const storyData = { title, url, author, username };
+
   const story = await storyList.addStory(currentUser, storyData);
 
   const $story = generateStoryMarkup(story);
@@ -108,29 +103,26 @@ async function submitNewStory(evt) {
 
   $submitForm.slideUp("slow");
   $submitForm.trigger("reset");
-
 }
 
 $submitForm.on("submit", submitNewStory);
 
-
-function putUserStoriesOnPage(){
-  console.debug ("putUserStoriesOnPage");
+function putUserStoriesOnPage() {
+  console.debug("putUserStoriesOnPage");
 
   $ownStories.empty();
 
   if (currentUser.ownStories.length === 0) {
-    $ownStories.append($('<h5>No stories added by user yet!</h5>'));
+    $ownStories.append($("<h5>No stories added by user yet!</h5>"));
   } else {
     for (let story of currentUser.ownStories) {
-      let $story = generateStoryMarkup (story, true);
+      let $story = generateStoryMarkup(story, true);
       $ownStories.append($story);
     }
   }
 
   $ownStories.show();
 }
-
 
 function putFavoritesListOnPage() {
   console.debug("putFavoritesListOnPage");
@@ -146,7 +138,7 @@ function putFavoritesListOnPage() {
     }
   }
 
-  $favoriteStories.show();
+  $favoritedStories.show();
 }
 
 async function toggleStoryFavorite(evt) {
@@ -155,7 +147,7 @@ async function toggleStoryFavorite(evt) {
   const $tgt = $(evt.target);
   const $closetLi = $tgt.closest("li");
   const $storyId = $closestLi.attr("id");
-  const story = storyList.stories.find(s => s.storyId === storyId);
+  const story = storyList.stories.find((s) => s.storyId === storyId);
 
   if ($tgt.hasClass("bi-star-fill")) {
     await currentUser.removeFavorite(story);
@@ -168,10 +160,3 @@ async function toggleStoryFavorite(evt) {
 
 $storiesList.on("click", ".star", toggleStoryFavorite);
 //Create function to add new stories
-
-
-
-
-$("#submit-form").on("submit", userSubmitStory);
- 
-

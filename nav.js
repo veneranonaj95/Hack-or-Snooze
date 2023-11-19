@@ -15,16 +15,13 @@ function navAllStories(evt) {
 
 $body.on("click", "#nav-all", navAllStories);
 
-function $navSubmitStoryClick(evt) {
-  console.debug("navSubmitStoryClick", evt);
-  evt.preventDefault();
+function navSubmitStoryClick() {
   hidePageComponents();
   $allStoriesList.show();
   $submitForm.show();
 }
 
-$navSubmitStoryClick.on("click", $navSubmitStoryClick);
-
+$navSubmitStory.on("click", navSubmitStoryClick);
 
 //TODO define navFavoritesClick function
 //$body.on("click","#nav-favorites", navFavoritesClick);
@@ -70,7 +67,6 @@ function navProfileClick(evt) {
 }
 
 $navUserProfile.on("click", navProfileClick);
-
 
 function updateNavOnLogin() {
   console.debug("updateNavOnLogin");

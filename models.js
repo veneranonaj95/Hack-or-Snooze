@@ -79,14 +79,14 @@ class StoryList {
     const response = await axios ({
       method: "POST",
       url: `${BASE_URL}/stories`,
-      data: {token, newStory: {title, author, url}},
+      data: {token, story: {title, author, url}},
     });
 
     const story = new Story (response.data.story);
     this.stories.unshift(story);
     user.ownStories.unshift(story);
 
-    return Story;
+    return story;
   }
 
   /** Delete story from API and remove from the story lists.

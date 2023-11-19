@@ -32,7 +32,7 @@ $loginForm.on("submit", login);
 
 $navSubmitStory.on('click', function (event) {
   event.preventDefault();
-  $navSubmitStoryClick()
+  navSubmitStoryClick()
 });
 /** Handle signup form submission. */
 
@@ -112,13 +112,15 @@ function saveUserCredentialsInLocalStorage() {
  * - generate the user profile part of the page
  */
 
+
 function updateUIOnUserLogin() {
   console.debug("updateUIOnUserLogin");
 
   hidePageComponents();
+
   $loginForm.hide();
   $allStoriesList.show();
- 
+  console.log('login',$loginForm)
   updateNavOnLogin();
   generateUserProfile();
 

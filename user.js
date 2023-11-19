@@ -25,13 +25,14 @@ async function login(evt) {
 
   saveUserCredentialsInLocalStorage();
   updateUIOnUserLogin();
+
 }
 
 $loginForm.on("submit", login);
 
 $navSubmitStory.on('click', function (event){
   event.preventDefault();
-  $navSubmitStoryClick()
+  navSubmitStoryClick()
 });
 
 /** Handle signup form submission. */
@@ -115,6 +116,7 @@ function saveUserCredentialsInLocalStorage() {
 function updateUIOnUserLogin() {
   console.debug("updateUIOnUserLogin");
 
+  $(".nav-link").show();
   hidePageComponents();
   $loginForm.hide();
   $allStoriesList.show();
